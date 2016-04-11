@@ -6,7 +6,7 @@ var gulp        = require('gulp'),
 
     gulp.task('sass', function() {
       return gulp.src('app/sass/**/*.scss') // Gets all files ending with .scss in app/scss
-        .pipe(sass())
+        .pipe(sass.sync().on('error', sass.logError)) // avoid break script if error sass
         .pipe(gulp.dest('app/css'))
         .pipe(browserSync.reload({
           stream: true
